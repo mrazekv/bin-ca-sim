@@ -9,7 +9,7 @@ type ImportRulesSectionProps = {
 }
 
 const ImportRulesSection:React.FC<ImportRulesSectionProps> = (props) => {
-    const {setNeighborhood, setRules, setBoardWidth, setMaxNumberSteps} = props
+    const {setNeighborhood, setRules} = props
     const [json, setJSON] = useState("")
 
     const handleChangeJson = (event: any) => {
@@ -36,6 +36,9 @@ const ImportRulesSection:React.FC<ImportRulesSectionProps> = (props) => {
                     setNeighborhood(neighborhoodJson);
                     setRules(initConfig.map((value, index) => ({ value: !!value, index: index })));
                 }
+            }
+            else {
+                alert("Invalid json, missing data and/or neighborhood parameter");
             }
         } catch (e) {
             alert("Invalid json")
