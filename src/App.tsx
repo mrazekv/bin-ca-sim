@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import './App.css';
 import Automata from "./components/Automata";
 import { CellType, RuleType } from "./models/cellModel";
 import { compareArrays, emptyArray, generateNewRow, randomArray, randomRule } from "./utils/cellUtils";
 import AutomataConfig from "./components/AutomataConfig";
 import ConfigRulesSection from "./components/ConfigRulesSection";
 import ImportRulesSection from "./components/ImportRulesSection";
+import './App.scss';
 
-const defaultNumberOfCells = 21
-const defaultNumberOfMaxSteps = 20
-const defaultDelay = 250
+const defaultNumberOfCells = 31
+const defaultNumberOfMaxSteps = 40
+const defaultDelay = 50
 
 const App: React.FC = () => {
     const [boardWidth, setBoardWidth] = useState<number>(defaultNumberOfCells);

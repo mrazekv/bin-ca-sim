@@ -12,7 +12,7 @@ const Cell: React.FC<CellProps> = props => {
 
     return (
         <div
-            className="cell"
+            className={`cell ${onClick ? "clickable" : ""}`}
             style={cell.active ? {background: "black"} : {background: "white"}}
             onClick={() => onClick ? onClick(cell, index) : console.log("you can change cells only in the first iteration")}
         />

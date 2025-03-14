@@ -1,0 +1,65 @@
+// Set your brand colors
+$purple: #8a4d76;
+$pink: #fa7c91;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// Path to Bulma's sass folder
+@use "bulma/sass" with (
+  $family-primary: '"Nunito", sans-serif',
+  $grey-dark: $brown,
+  $grey-light: $beige-light,
+  $primary: $purple,
+  $link: $pink,
+  $control-border-width: 2px,
+  $input-shadow: none
+);
+
+// Import the Google Font
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+} 
+
+.cell {
+  border: 1px solid rgb(58, 58, 58);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin-bottom: -1px;
+  margin-right: -1px;
+
+
+}
+
+.clickable {
+  border-color :rgb(173, 21, 41);
+  cursor: pointer;
+}
+
+.configItem{
+  margin-right: 30px;
+}
+
+.note {
+  font-size: 11px;
+  color: #666;
+}
+.jsonDiv > textarea {
+  font-family: 'Lucida Console', 'Consolas', 'Courier New', Courier, monospace;
+}
+
+.colorActive {
+  /*color: red;*/
+  text-decoration: underline;;
+}
+

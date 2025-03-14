@@ -28,8 +28,15 @@ const ImportRulesSection:React.FC<ImportRulesSectionProps> = (props) => {
                     alert("Rule length must be " + ruleLength)
                 } else {
                     //setMaxNumberSteps(steps);
+
                //     setBoardWidth(cellular_length)
                     setNeighborhood(neighborhoodJson);
+                    
+                    // wait for application to update neighborhood of react use
+                    setTimeout(() => setRules(initConfig.map((value, index) => ({ value: !!value, index: index }))), 0);
+                    
+
+
                     setRules(initConfig.map((value, index) => ({ value: !!value, index: index })));
 
                     // do it twice
@@ -53,7 +60,7 @@ const ImportRulesSection:React.FC<ImportRulesSectionProps> = (props) => {
                           placeholder={"Insert JSON values from script"}></textarea>
             </div>
             <br/>
-            <button className="button is-primary" onClick={initFromJson}>Inicialize rules</button>
+            <button className="button is-primary" onClick={initFromJson}>Load rules</button>
         </div>
     )
 }
