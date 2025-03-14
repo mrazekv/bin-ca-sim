@@ -32,7 +32,7 @@ const AutomataConfig: React.FC<AutomataConfigProps> = (props) => {
         <div className={"row"}>
             <div className={"configItem field"}>
                 <div className="field-label is-normal">
-                    <label className="label">Number of rows: </label>
+                    <label className="label">Number of cells: </label>
                 </div>
 
                 <div className="field-body">

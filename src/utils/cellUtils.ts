@@ -37,8 +37,14 @@ const findRule = (index: number, row: CellType[], neighborhood: number): number 
     let j = 1;
     let ruleIndex = 0;
     for (let idx = index + neighborhood; idx >= index - neighborhood; idx--) {
-        console.log("text", j)
-        ruleIndex += (row[idx] !== undefined && row[idx].active ? 1 : 0) * j;
+        let idx2 = idx;
+        
+        if(idx2 < 0) idx2 = 0;
+        if(idx2 >= row.length) idx2 = row.length - 1;
+
+        console.log("text", j, idx2);
+
+        ruleIndex += (row[idx2] !== undefined && row[idx2].active ? 1 : 0) * j;
         j = j + j;
     }
     return ruleIndex;

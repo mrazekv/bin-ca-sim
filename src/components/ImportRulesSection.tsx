@@ -20,15 +20,19 @@ const ImportRulesSection:React.FC<ImportRulesSectionProps> = (props) => {
             const jsonParsed = JSON.parse(json);
             const initConfig: number[] = jsonParsed.data;
             const neighborhoodJson: number = parseInt(jsonParsed.neighborhood);
-            const cellular_length: number = parseInt(jsonParsed.cellular_length);
-            const steps: number = parseInt(jsonParsed.steps);
+            //const cellular_length: number = parseInt(jsonParsed.cellular_length);
+            //const steps: number = parseInt(jsonParsed.steps);
             if (initConfig && neighborhoodJson) {
                 const ruleLength = Math.pow(2, neighborhoodJson * 2 + 1);
                 if (ruleLength !== initConfig.length) {
                     alert("Rule length must be " + ruleLength)
                 } else {
-                    setMaxNumberSteps(steps);
-                    setBoardWidth(cellular_length)
+                    //setMaxNumberSteps(steps);
+               //     setBoardWidth(cellular_length)
+                    setNeighborhood(neighborhoodJson);
+                    setRules(initConfig.map((value, index) => ({ value: !!value, index: index })));
+
+                    // do it twice
                     setNeighborhood(neighborhoodJson);
                     setRules(initConfig.map((value, index) => ({ value: !!value, index: index })));
                 }

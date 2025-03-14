@@ -1,5 +1,6 @@
 .App {
     text-align: center;
+    background: white;
 }
 
 .App-logo {
@@ -56,4 +57,37 @@
 
 .configItem{
     margin-right: 30px;
+}
+
+.note {
+    font-size: 11px;
+    color: #666;
+}
+.jsonDiv > textarea {
+    font-family: 'Lucida Console', 'Consolas', 'Courier New', Courier, monospace;
+}
+
+.colorActive {
+    /*color: red;*/
+    text-decoration: underline;;
+}
+
+h1.title {
+    color: white;
+font-size: 1.5em;
+font-weight: 600;
+/* line-height: 1.125; */
+background: #00a9e0;
+position: relative;
+/* top: -31px; */
+padding: 2px;
+left: 0px;
+right: 0px;
+bottom: 0px;
+margin: 0px !important;
+font-variant: small-caps;}
+
+body {
+    padding: 0px !important;
+    background: linear-gradient(#eee, white 30%) fixed;
 }

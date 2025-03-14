@@ -7,9 +7,9 @@ import AutomataConfig from "./components/AutomataConfig";
 import ConfigRulesSection from "./components/ConfigRulesSection";
 import ImportRulesSection from "./components/ImportRulesSection";
 
-const defaultNumberOfCells = 10
+const defaultNumberOfCells = 21
 const defaultNumberOfMaxSteps = 20
-const defaultDelay = 1000
+const defaultDelay = 250
 
 const App: React.FC = () => {
     const [boardWidth, setBoardWidth] = useState<number>(defaultNumberOfCells);
@@ -40,7 +40,7 @@ const App: React.FC = () => {
         setCells([emptyArray(boardWidth)])
     }
 
-    const nextInterval = () => {
+    const nextInterval = React.useCallback(() => {
         if (iterations >= maxNumberSteps) return;
         setIteration((iterations) => {
             return iterations + 1
@@ -51,9 +51,9 @@ const App: React.FC = () => {
             newRows.push(generatedNewRow);
             return newRows;
         })
-    }
+    }, [maxNumberSteps, neighborhood, rules, iterations]);
 
-    const _setRunning = (isRunning: boolean) => {
+    const _setRunning = React.useCallback((isRunning: boolean) => {
         if (running) {
             clearInterval(running);
         }
@@ -63,7 +63,7 @@ const App: React.FC = () => {
         } else {
             setRunning(undefined);
         }
-    }
+    }, [running, delay, nextInterval]);
 
 
     React.useEffect(() => {
@@ -71,25 +71,29 @@ const App: React.FC = () => {
         if (compareArrays(cells[cells.length - 1], cells[cells.length - 2])) {
             _setRunning(false)
         }
-    }, [cells])
+    }, [cells, _setRunning])
 
     React.useEffect(() => {
         if (iterations >= maxNumberSteps) {
             _setRunning(false)
         }
-    }, [iterations, maxNumberSteps])
+    }, [iterations, maxNumberSteps, _setRunning])
 
+
+    
+    let startActive = (iterations < maxNumberSteps);
+    let stepActive = !running && startActive;
     const actions = (
         <div className="buttons is-centered">
             <div className={"configItem"}>
-                {
+                {                    
                     running
-                        ? <button className="button is-danger" onClick={() => _setRunning(false)}>Stop</button>
-                        : <button className="button is-success" onClick={() => _setRunning(true)}>Start</button>
+                        ? <button className="button is-danger" disabled={!startActive} onClick={() => _setRunning(false)}>Stop</button>
+                        : <button className="button is-success" disabled={!startActive}  onClick={() => _setRunning(true)}>Start</button>   
                 }
             </div>
             <div className={"configItem"}>
-                <button className="button is-info" onClick={nextInterval}>Step</button>
+                <button className="button is-info" disabled={!stepActive} onClick={nextInterval}>Step</button>
             </div>
             <div className={"configItem"}>
                 <button className="button is-info" onClick={initBoard}>Random Init</button>
@@ -111,7 +115,6 @@ const App: React.FC = () => {
     return (
         <div className="App container">
             <h1 className="title">BIN - cellular automata visualization</h1>
-            <h4 className="subtitle">Alena Tesařová (xtesar36@stud.fit.vutbr.cz)</h4>
             <AutomataConfig
                 boardWidth={boardWidth}
                 delay={delay}
@@ -125,9 +128,13 @@ const App: React.FC = () => {
                 setBoardWidth={setBoardWidth}
                 setDelay={setDelay}
             />
+            
+            <br/>
+            {actions}
+            Iteration: <span className="tag is-success">{iterations}</span>
             <br/>
             <br/>
-            <div>
+            <div style={{minHeight: "600px"}}>
                 {cells.map((row, key) => (
                     <Automata cells={row}
                               key={key}
@@ -136,10 +143,6 @@ const App: React.FC = () => {
                 ))}
             </div>
             <br/>
-            Iteration: <span className="tag is-success">{iterations}</span>
-            <br/>
-            <br/>
-            {actions}
             <ConfigRulesSection
                 ruleLength={ruleLength}
                 rules={rules}
@@ -151,6 +154,9 @@ const App: React.FC = () => {
                 setBoardWidth={setBoardWidth}
                 setMaxNumberSteps={setMaxNumberSteps}
             />
+
+
+            <div className="note">The visualization tool was developed by Alena Tesařová (xtesar36) as a BIN 2021 project.</div>
 
         </div>
     );

@@ -1,15 +1,19 @@
 # BIN - Vizualizace návrhu celulárního automatu
 
-## Zadání
-Navrhněte a implementujte ve webovém prostředí (javascript, typescript, libovolný framework) prostředí pro vizualizaci 1D celulárního automatu na základě specifikovaných pravidel. Pro demonstraci využití navrhněte jednoduchý evoluční algoritmus v C/C++ řešící úlohu majority poskytující výstupy tak, aby se výsledná pravidla dala simulovat ve vašem vizualizačním nástroji.
 
-## Spuštění
+## Ladění
 ```aidl
 npm i
 npm start
 ```
-## Program na vizualizaci online
-https://alena424.github.io/bin/
 
-## Autor
-Alena Tesařová (xtesar36)
+## Deploy
+```
+npm run build
+cp -r build/* ~/mnt/ehw/bin-lab-ca/
+```
+
+
+
+## Zadání
+Vychází z projektu A. Tesařové - BIN 2020/2021, zdrojové kódy na https://alena424.github.io/bin/
