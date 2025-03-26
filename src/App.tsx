@@ -116,7 +116,7 @@ const App: React.FC = () => {
         <div className="App container">
             <div className="header" style={{marginTop: "20px", marginBottom: "20px"}} >
                 
-                <h1 className="title"><img src="/logo.svg" alt="Logo" style={{ height: "50px", marginRight: "10px", marginBottom: "-15px" }} /> BIN - cellular automata visualization</h1>
+                <h1 className="title"><img src={`${process.env.PUBLIC_URL}/logo.svg`} alt="Logo" style={{ height: "50px", marginRight: "10px", marginBottom: "-15px" }} /> BIN - cellular automata visualization</h1>
             </div>
             <AutomataConfig
                 boardWidth={boardWidth}
